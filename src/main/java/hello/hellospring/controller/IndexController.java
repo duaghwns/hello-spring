@@ -1,5 +1,8 @@
 package hello.hellospring.controller;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,5 +23,18 @@ public class IndexController {
     @ResponseBody
     public String hello(@RequestParam(value = "name") String name){
         return "hello " + name;
+    }
+
+    @GetMapping("hello-api")
+    @ResponseBody
+    public Hello helloapi(@RequestParam("name") String name){
+        Hello hello = new Hello(name);
+        return hello;
+    }
+
+    @Getter
+    @Setter @AllArgsConstructor
+    static class Hello{
+        private String name;
     }
 }
