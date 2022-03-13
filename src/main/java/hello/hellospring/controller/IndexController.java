@@ -32,8 +32,7 @@ public class IndexController {
         return hello;
     }
 
-    @Getter
-    @Setter @AllArgsConstructor
+    @AllArgsConstructor
     static class Hello{
         private String name;
     }
