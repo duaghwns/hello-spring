@@ -3,8 +3,11 @@ package hello.hellospring.controller;
 import hello.hellospring.domain.Member;
 import hello.hellospring.service.MemberService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.List;
 
 public class MemberController {
 
@@ -27,5 +30,12 @@ public class MemberController {
 
         service.join(member);
         return "redirect:/";
+    }
+
+    @GetMapping("members")
+    public String list(Model model){
+        List<Member> members = service.findMembers();
+        model.addAttribute("members",members);
+        return "members/memberList";
     }
 }
