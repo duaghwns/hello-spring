@@ -36,4 +36,5 @@ public class IndexController {
     static class Hello{
         private String name;
     }
+
 }
