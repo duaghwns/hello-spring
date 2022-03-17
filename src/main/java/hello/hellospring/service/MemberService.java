@@ -5,6 +5,7 @@ import hello.hellospring.repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 public class MemberService {
@@ -27,6 +28,14 @@ public class MemberService {
                 .ifPresent(m->{
                     throw new IllegalStateException("이미 존재하는 회원입니다.");
                 });
+    }
+
+    public Member login(Long id, String name){
+        Optional<Member> memberId = memberRepository.findById(id);
+        if(memberId != null && memberId==memberRepository.findByName(memberId.get().getName())){
+            return new Member(memberRepository.findByName(memberId.get().getName()).get().getName());
+        }
+        throw new IllegalStateException("회원이 존재하지 않습니다.");
     }
 
     public List<Member> findMembers(){

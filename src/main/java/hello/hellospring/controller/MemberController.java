@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 @Controller
 public class MemberController {
@@ -38,5 +40,25 @@ public class MemberController {
         List<Member> members = service.findMembers();
         model.addAttribute("members",members);
         return "members/memberList";
+    }
+
+    @GetMapping("/members/login")
+    public String loginView(){
+        return "members/login";
+    }
+
+    @PostMapping("/members/login")
+    public String login(HttpServletRequest request, Long id, String name){
+        HttpSession session = request.getSession();
+        Member loginMember = service.login(id, name);
+
+        if(loginMember != null){
+            session.setAttribute("user",loginMember);
+            return "redirect:/";
+        } else {
+            return "members/login";
+
+        }
+
     }
 }

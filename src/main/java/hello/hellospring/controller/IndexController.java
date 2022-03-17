@@ -9,13 +9,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 @Controller
 public class IndexController {
 
     @GetMapping("/")
-    public String index(@RequestParam(value = "name",required = false) String name, Model model){
+    public String index(@RequestParam(value = "name",required = false) String name, HttpServletRequest request, Model model){
+        HttpSession session = request.getSession();
+        Object user = session.getAttribute("user");
         name = name != null ? name:"손";
-        model.addAttribute("name",name);
+        user = user != null ? user.toString():name;
+        model.addAttribute("name",user);
         return "index";
     }
 
