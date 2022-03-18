@@ -21,6 +21,7 @@ class MemberServiceIntegrationTest {
     MemberRepository repository;
 
     @Test
+    @Transactional(rollbackFor = IllegalStateException.class)
     public void 회원가입() throws Exception {
         // given
         Member member = new Member("hojoon");
