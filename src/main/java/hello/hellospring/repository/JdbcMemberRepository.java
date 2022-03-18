@@ -8,6 +8,7 @@ import org.springframework.jdbc.datasource.DataSourceUtils;
 import javax.sql.DataSource;
 import javax.sql.StatementEvent;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -119,9 +120,14 @@ public class JdbcMemberRepository implements MemberRepository{
             pstmt = conn.prepareStatement(findAllSql);
             rs = pstmt.executeQuery();
 
-            if(rs.next()){
-
+            List<Member> members = new ArrayList<>();
+            while(rs.next()){
+                Member member = new Member();
+                member.setId(rs.getLong("id"));
+                member.setName(rs.getString("name"));
+                members.add(member);
             }
+            return members;
         } catch (Exception e){
             throw new IllegalStateException("멤버 정보를 찾을 수 없습니다.");
         } finally {
