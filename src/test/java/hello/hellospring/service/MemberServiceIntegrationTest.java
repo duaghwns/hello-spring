@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
-@Transactional(rollbackFor = IllegalStateException.class)
+@Transactional(rollbackFor = Exception.class)
 class MemberServiceIntegrationTest {
 
     @Autowired
@@ -21,7 +21,6 @@ class MemberServiceIntegrationTest {
     MemberRepository repository;
 
     @Test
-    @Transactional(rollbackFor = IllegalStateException.class)
     public void 회원가입() throws Exception {
         // given
         Member member = new Member("hojoon");
