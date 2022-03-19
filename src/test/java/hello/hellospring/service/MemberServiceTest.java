@@ -2,7 +2,6 @@ package hello.hellospring.service;
 
 import hello.hellospring.domain.Member;
 import hello.hellospring.repository.MemoryMemberRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -35,7 +34,7 @@ class MemberServiceTest {
         // when
         Long saveId = service.join(member);
         // then
-        Member findMember = service.findOne(saveId).get();
+        Member findMember = service.findById(saveId).get();
         assertThat(member.getName()).isEqualTo(findMember.getName());
     }
 

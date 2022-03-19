@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
-@Transactional(rollbackFor = Exception.class)
+@Transactional
 class MemberServiceIntegrationTest {
 
     @Autowired
@@ -23,19 +23,19 @@ class MemberServiceIntegrationTest {
     @Test
     public void 회원가입() throws Exception {
         // given
-        Member member = new Member("hojoon");
+        Member member = new Member("test");
         // when
         Long saveId = service.join(member);
         // then
-        Member findMember = service.findOne(saveId).get();
+        Member findMember = service.findById(saveId).get();
         assertEquals(member.getName(),findMember.getName());
     }
 
     @Test
     public void 중복_회원_예외() throws Exception {
         // given
-        Member member = new Member("hojoon");
-        Member member1 = new Member("hojoon");
+        Member member = new Member("test");
+        Member member1 = new Member("test");
         // when
         service.join(member1);
         IllegalStateException e = assertThrows(IllegalStateException.class, () -> service.join(member));

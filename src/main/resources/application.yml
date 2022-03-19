@@ -1,4 +1,7 @@
 spring:
+  jpa:
+    show: true
+    hibernate: none
   datasource:
     url: jdbc:h2:tcp://localhost/~/test
     driver-class-name: org.h2.Driver
