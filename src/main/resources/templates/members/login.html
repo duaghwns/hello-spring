@@ -3,24 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        .pwbox{
+            width: 25px;
+            height: 25px;
+        }
+        th{
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
 <div class="container">
     <form action="/members/login" method="post">
         <div class="login-form">
-            <table>
+            <table border="1px soild black">
                 <tr>
-                    <td>아이디</td>
-                    <td><input type="text" name="id"></td>
+                    <th>아이디</th>
+                    <td><input type="text" name="id" placeholder="아이디를 입력해주세요"></td>
                 </tr>
                 <tr>
-                    <td>이름</td>
-                    <td><input type="text" name="name"></td>
+                    <th>비밀번호</th>
+                    <td><input type="password" name="password" placeholder="6글자 이상" id="id_password"></td>
                 </tr>
+                <tr>
+                    <th>비밀번호 확인</th>
+                    <td><input type="password" name="password" placeholder="비밀번호를 입력해주세요" id="chk_password"></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <span id="sign-password"></span>
+                    </td>
+                </tr>
+                <tr>
+                    <th>이름</th>
+                    <td><input type="text" name="name" placeholder="이름을 입력해주세요"></td>
+                </tr>
+
             </table>
-            <button type="submit">로그인</button>
+            <button type="submit" id="btn-submit">로그인</button>
         </div>
     </form>
 </div>
+<script>
+    const pw = document.querySelector("#id_password");
+    const chkPw = document.querySelector("#chk_password");
+    const signPw = document.querySelector('#sign-password');
+    const submit = document.querySelector('#btn-submit');
+
+    const checkPassword = e => {
+        if(pw.value.length > 5 && chkPw.value.length > 5){
+            if(pw.value !== chkPw.value){
+                signPw.style.color = '#d63638';
+                signPw.innerHTML = '비밀번호가 일치하지 않습니다.';
+                e.preventDefault();
+            } else {
+                signPw.style.color = '#1ed14b';
+                signPw.innerHTML = '비밀번호가 일치합니다.';
+            }
+        }
+        return false;
+    }
+
+    chkPw.addEventListener('keyup', checkPassword);
+</script>
 </body>
 </html>
