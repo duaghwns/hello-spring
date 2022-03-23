@@ -9,7 +9,6 @@ import java.util.List;
 public interface BoardRepository {
     Board save(Board board);
     Board update(Board board);
-    Board findById(Long id);
     List<Board> findByTitle(String title);
     List<Board> findByAuthor(String author);
 }
