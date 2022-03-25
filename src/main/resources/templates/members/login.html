@@ -3,15 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style>
-        .pwbox{
-            width: 25px;
-            height: 25px;
-        }
-        th{
-            text-align: left;
-        }
-    </style>
 </head>
 <body>
 <div class="container">
@@ -24,13 +15,12 @@
                 </tr>
                 <tr>
                     <th>비밀번호</th>
-                    <td><input type="password" name="password" placeholder="6글자 이상" id="id_password"></td>
+                    <td><input type="password" name="password" placeholder="비밀번호를 입력해주세요" id="id_password"></td>
                 </tr>
                 <tr>
-                    <td colspan="2"><button>로그인</button><button>회원가입</button></td>
+                    <td colspan="2"><button type="submit" id="btn-submit">로그인</button><button>회원가입</button></td>
                 </tr>
             </table>
-            <button type="submit" id="btn-submit">로그인</button>
         </div>
     </form>
 </div>
