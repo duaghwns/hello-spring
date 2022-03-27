@@ -16,7 +16,6 @@ public class SpringConfig {
 
     private final MemberRepository repository;
 
-
     public SpringConfig(@Qualifier("stringDataJpaMemberRepository") MemberRepository repository) {
         this.repository = repository;
     }

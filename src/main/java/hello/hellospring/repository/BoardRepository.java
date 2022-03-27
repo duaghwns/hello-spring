@@ -11,4 +11,5 @@ public interface BoardRepository {
     Board update(Board board);
     List<Board> findByTitle(String title);
     List<Board> findByAuthor(String author);
+    List<Board> findAll();
 }
